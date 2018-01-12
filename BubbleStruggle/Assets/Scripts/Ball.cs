@@ -23,7 +23,6 @@ public class Ball : MonoBehaviour {
 	}
 
     public virtual void Split() {
-        Debug.Log("Split from Ball");
         if (m_nextBall != null) {
             Ball left = Instantiate(m_nextBall, m_rigidBody.position + Vector2.left / 4f, Quaternion.identity);
             Ball right = Instantiate(m_nextBall, m_rigidBody.position + Vector2.right / 4f, Quaternion.identity);

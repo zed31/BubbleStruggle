@@ -4,7 +4,6 @@ using UnityEngine;
 public class AnnoyingBalls : Ball {
     public override void Split()
     {
-        Debug.Log("Spliting balls");
         if (m_nextBall != null)
         {
             foreach (var i in Enumerable.Range(0, 5))
