@@ -1,30 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ball : MonoBehaviour {
-    [SerializeField] private Vector2 m_startForce;
+    [SerializeField] protected Vector2 m_startForce;
 
-    [SerializeField] private Rigidbody2D m_rigidBody;
+    [SerializeField] protected Rigidbody2D m_rigidBody;
 
-    [SerializeField] private Ball m_nextBall;
+    [SerializeField] protected Ball m_nextBall;
 
 	// Use this for initialization
 	void Start () {
         m_rigidBody.AddForce(m_startForce, ForceMode2D.Impulse);
 	}
+
+    public void SetForce(Vector2 force)
+    {
+        m_startForce = force;
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-    public void split() {
+    public virtual void Split() {
+        Debug.Log("Split from Ball");
         if (m_nextBall != null) {
-            Ball left = Instantiate(m_nextBall, m_rigidBody.position + Vector2.left, Quaternion.identity);
-            Ball right = Instantiate(m_nextBall, m_rigidBody.position + Vector2.right, Quaternion.identity);
-            left.m_startForce = new Vector2(2f, 3f);
-            right.m_startForce = new Vector2(-2f, 3f);
+            Ball left = Instantiate(m_nextBall, m_rigidBody.position + Vector2.left / 4f, Quaternion.identity);
+            Ball right = Instantiate(m_nextBall, m_rigidBody.position + Vector2.right / 4f, Quaternion.identity);
+            left.m_startForce = new Vector2(-1f, 5f);
+            right.m_startForce = new Vector2(1f, 5f);
         }
         Destroy(gameObject);
     }
