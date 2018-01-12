@@ -6,7 +6,7 @@ public class ChainCollider : MonoBehaviour {
         Chain_physics.m_isFireing = false;
 
         if (colliderHitten.tag == "Ball") {
-            colliderHitten.GetComponent<Ball>().split();
+            colliderHitten.GetComponent<Ball>().Split();
         }
 
     }
